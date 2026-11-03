@@ -1,6 +1,6 @@
 ---
 title: ③-6 チャットツールと連携する
-description: Slack・Microsoft Teams・LINE WORKS・Chatwork・Google Chat との連携
+description: Slack との連携
 ---
 
 エージェントをチャットツールと連携すると、普段使っているチャットからエージェントにメンションして質問できます。エージェントの左メニューから「サービス連携」を選択します。
@@ -14,10 +14,6 @@ description: Slack・Microsoft Teams・LINE WORKS・Chatwork・Google Chat と�
 | サービス | 連携の単位 |
 | --- | --- |
 | Slack | チャンネル・DM |
-| Microsoft Teams | チャンネル・チャット |
-| LINE WORKS | トーク |
-| Chatwork | ルーム |
-| Google Chat | スペース・DM |
 | AUTORO | RPA ワークフローと連携し、自動化タスクを実行 |
 
 連携はエージェント単位で作成します。エージェントごとに別のチャンネルやアプリへ繋げられます。
@@ -38,10 +34,6 @@ description: Slack・Microsoft Teams・LINE WORKS・Chatwork・Google Chat と�
 | サービス | 入力する情報 | 取得先 |
 | --- | --- | --- |
 | Slack | Signing Secret / Bot User OAuth Token | Slack アプリの設定画面 |
-| Microsoft Teams | Microsoft App ID / App Password（クライアントシークレット） | Azure Bot Service（Azure Portal） |
-| LINE WORKS | Bot ID / ドメインID / Client ID / Client Secret / Bot Secret / Service Account ID / 秘密鍵 | LINE WORKS Developer Console |
-| Chatwork | APIトークン / Webhookトークン | Chatwork の API 設定・Developer Center |
-| Google Chat | プロジェクト番号 / サービスアカウントのメールアドレス / サービスアカウントの秘密鍵 | Google Cloud コンソール |
 
 **Slack の場合：** 連携画面からアプリの「マニフェスト」をコピーできます。Slack でアプリを新規作成するときにマニフェストを貼り付けると、必要な権限とイベント設定がまとめて設定されます。
 
