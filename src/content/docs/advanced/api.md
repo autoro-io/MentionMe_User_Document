@@ -39,13 +39,23 @@ Authorization: Bearer <APIキー>
 
 ### response_format
 
-回答の形式を指定します。省略時は `text` です。Public API と OpenAI 互換 API で使えます。
+回答の形式を指定します。省略時は、エージェントの[出力形式](../../guides/playground/#出力形式json-で返す)の設定に従います（既定はテキスト）。Public API と OpenAI 互換 API で使えます。
 
 | `type` | 回答の形式 |
 | --- | --- |
 | `text` | 通常の文章 |
 | `json_schema` | 指定した JSON Schema に沿った JSON |
 | `json_object` | 形を指定しない任意の JSON |
+
+エージェントの出力形式を JSON にしている場合の扱いは次のとおりです。
+
+| リクエストの `response_format` | 使われる形式 |
+| --- | --- |
+| 省略 | エージェントの出力形式（公開バージョンがあればその設定） |
+| `text` | 文章（エージェントの設定が JSON でも文章で返します） |
+| `json_schema` / `json_object` | リクエストの指定（エージェントの設定より優先します） |
+
+`response_format` を指定できない非同期 API と Responses API は、常にエージェントの出力形式に従います。
 
 `json_schema` の指定例：
 
@@ -421,6 +431,8 @@ curl https://app.mentionme.jp/v1/chat/completions \
 ### 出典（citations）
 
 回答の根拠にした資料の情報（資料名・該当箇所・ページ番号・スコア）をレスポンスの `citations` に含められます。プレイグラウンドの「引用情報を返す」をオンにしてバージョンを保存すると有効になります。
+
+出典は資料ごとに1件にまとめ、関連度の高い順に並べます。同じ資料の複数の箇所が見つかった場合、ページ番号・見出しは `pageNumbers` / `sectionLabels` にまとめて入ります。
 
 :::caution
 APIキーはパスワードと同様に扱ってください。ブラウザで動くプログラム（JavaScript など）に埋め込むと第三者に読み取られます。必ずサーバー側から呼び出してください。
